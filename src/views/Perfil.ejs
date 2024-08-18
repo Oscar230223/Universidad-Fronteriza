@@ -59,11 +59,25 @@
                 <button type="button" class="btn btn-danger btns" onclick="logout()">Cerrar sesión</button>
             </div>
         </div>
-        <script>
+        <!--script>
             function logout() {
                 localStorage.removeItem('token');
                 document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 window.location.href = '/login';
+            }
+        </script-->
+        <script>
+            function logout() {
+                // Enviar una solicitud POST a la ruta de cierre de sesión en el servidor
+                fetch('/logout', { method: 'POST', credentials: 'include' })
+                    .then(() => {
+                        // Elimina el token del localStorage
+                        localStorage.removeItem('token');
+                        
+                        // Redirige al usuario a la página de inicio de sesión
+                        window.location.href = '/login';
+                    })
+                    .catch(err => console.error('Error al cerrar sesión:', err));
             }
         </script>
     </div>

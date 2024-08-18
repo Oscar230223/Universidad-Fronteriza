@@ -109,8 +109,10 @@ const verificarToken = (req, res, next) => {
 };
 
 router.post('/logout', (req, res) => {
-    res.clearCookie('token');
-    res.redirect('/login');
+    //res.clearCookie('token');
+    //res.redirect('/login');
+    res.cookie('token', '', { httpOnly: true, expires: new Date(0), path: '/' });
+    res.redirect('/login')
 });
 
 router.post('/database/buzon', async (req, res) => {
