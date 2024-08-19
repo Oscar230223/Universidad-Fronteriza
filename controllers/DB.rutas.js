@@ -168,4 +168,9 @@ router.get('/chat', async (req, res) => {
         res.status(500).json({ error: 'Ocurrió un error al obtener los datos' });
     }
 });
+
+router.get('/calificaciones', async (req, res) => {
+
+});
+
 module.exports = router;

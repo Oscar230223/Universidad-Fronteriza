@@ -81,4 +81,8 @@ router.get("/faqs", (req, res) => {
     res.render("faqs");
 });
 
+router.get("/calificaciones", (req, res) => {
+    res.render("calificaciones");
+});
+
 module.exports = router;

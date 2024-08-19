@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Inicio de sesión UFCJ</title>
+    <title>Perfil de estudiante UFCJ</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <!--metadatos-->
     <meta charset="UTF-8">
@@ -13,8 +13,35 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/EstiloFooter.css">
     <link rel="stylesheet" href="/css/index.css">
-        <link rel="stylesheet" href="/css/buscador.css">
+    <link rel="stylesheet" href="/css/buscador.css">
     <link rel="stylesheet" href="/css/login.css">
+    <style>
+        .contenedor {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btns {
+            width: 200px;
+            background-color: #e4e0df;
+            color: black;
+            font-weight: 600;
+            margin-top: 6%;
+            margin-left: -8%;
+        }
+        .button-container {
+            margin: 10px;
+        }
+        .btn-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        footer {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
     <header class="">
@@ -24,13 +51,12 @@
             </a>
         </div>
         <b><h1 class="ufcj">UNIVERSIDAD FRONTERIZA DE CIUDAD JUÁREZ</h1></b>
-            <div class="buscar-wrapper">
-                <ul id="results" class="results"></ul>
-                <input type="text" id="buscar" placeholder="Buscar" class="buscar-input">
-                <button onclick="buscar()" class="buscar-button">Buscar</button>
-            </div>
-            <script src="/js/Buscador.js"></script>
+        <div class="buscar-wrapper">
+            <ul id="results" class="results"></ul>
+            <input type="text" id="buscar" placeholder="Buscar" class="buscar-input">
+            <button onclick="buscar()" class="buscar-button">Buscar</button>
         </div>
+        <script src="/js/Buscador.js"></script>
     </header>
     <div id="menu">
         <ul id="menu-list">
@@ -48,45 +74,34 @@
             <p><strong>Carrera:</strong> <%= carrera %></p><br>
         </center>
     </div>
-    <div class="row">
-        <div class="col-md-6 columna-izquierda">
-            <div class="button-container d-flex justify-content-center align-items-center">
-                <button type="button" class="btn btn-primary btns" onclick="window.location.href='/chat'">Chat</button>
-            </div>
+
+    <div class="btn-row">
+        <div class="button-container">
+            <button type="button" class="btn btn-primary btns" onclick="window.location.href='/chat'">Chat</button>
         </div>
-        <div class="col-md-6 columna-derecha">
-            <div class="button-container d-flex justify-content-center align-items-center">
-                <button type="button" class="btn btn-danger btns" onclick="logout()">Cerrar sesión</button>
-            </div>
+        <div class="button-container">
+            <button type="button" class="btn btn-secondary btns" onclick="window.location.href='/calificaciones'">Calificaciones</button>
         </div>
-        <!--script>
-            function logout() {
-                localStorage.removeItem('token');
-                document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                window.location.href = '/login';
-            }
-        </script-->
-        <script>
-            function logout() {
-                // Enviar una solicitud POST a la ruta de cierre de sesión en el servidor
-                fetch('/logout', { method: 'POST', credentials: 'include' })
-                    .then(() => {
-                        // Elimina el token del localStorage
-                        localStorage.removeItem('token');
-                        
-                        // Redirige al usuario a la página de inicio de sesión
-                        window.location.href = '/login';
-                    })
-                    .catch(err => console.error('Error al cerrar sesión:', err));
-            }
-        </script>
+        <div class="button-container">
+            <button type="button" class="btn btn-danger btns" onclick="logout()">Cerrar sesión</button>
+        </div>
     </div>
-    <br><br>
 
     <footer>
         <div id="dynamic-footer">
         </div>
     </footer>
     <script src="/js/Footer.js"></script>
+
+    <script>
+        function logout() {
+            fetch('/logout', { method: 'POST', credentials: 'include' })
+                .then(() => {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                })
+                .catch(err => console.error('Error al cerrar sesión:', err));
+        }
+    </script>
 </body>
 </html>
