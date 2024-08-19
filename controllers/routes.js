@@ -49,6 +49,18 @@ router.get("/Recuperar", (req, res) => {
     res.render("RecuperarContra");
 });
 
+router.get("/Recuperar2", (req, res) => {
+    res.render("RecuperarMensaje");
+});
+
+router.get("/Recuperar3", (req, res) => {
+    res.render("RecuperarPregunta");
+});
+
+router.get("/Recuperar4", (req, res) => {
+    res.render("VerificacionCelular");
+});
+
 router.get("/Registro", (req, res) => {
     res.render("registro");
 });
